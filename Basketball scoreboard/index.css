@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    text-align: center;
+    background-color: black;
+}
+
+.score {
+    background: #0a0001;
+    font-size: 70px;
+    color: #F94F6D;
+    width: 120px;
+    margin: 10px;
+}
+
+h3 {
+    color: beige;
+    font-size: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    margin: 10% 30%;
+    background-color: rgb(46, 46, 190);
+    padding: 15px 30px 30px 15px;
+}
+
+button {
+    all: unset;
+    border: 1px solid beige;
+    color: beige;
+    padding: 2px 5px;
+}
+
