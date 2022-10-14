@@ -2,6 +2,7 @@
 const capturedPokemons = [];
 const pokemons = new Array(150).fill(0).map((_, i) => i + 1);
 const lvlArr = new Array(25).fill(0).map((_, i) => i + 1);
+
 function newPokemon () {
     return pokemons[random(pokemons)];
 }
