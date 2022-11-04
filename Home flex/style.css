@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  min-height: 100vh;
+  background-color: rgb(22, 22, 22);
+  display: flex;
+  flex-direction: column;
+}
+
+.paragraph {
+  font-size: 30px;
+}
+
+.header {
+  flex-basis: 100%;
+  padding: 0px 10px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+  }
+}
+.footer {
+  background-color: black;
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.footer .paragraph {
+  font-size: 14px;
+}
+
+.main-content {
+  flex: 1 0 400px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-content: center;
+}
+
+.filme {
+  width: 350px;
+  height: 240px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+  color: white;
+  transition: 0.3s;
+}
+
+.button-header {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  padding: 1vh;
+  font-size: 1rem;
+  transition: 0.5s;
+}
+
+.button {
+  display: flex;
+  gap: 10px;
+}
+
+button:hover,
+button:focus,
+.filme:hover,
+.filme:focus {
+  border-color: red;
+  color: red;
+  cursor: pointer;
+}
+
+button:active,
+.filme:active {
+  background-color: rgb(41, 41, 41);
+  color: #fff;
+}
+
+.logo-rock {
+  width: 30px;
+}
+
+.logo-netflix {
+  width: 150px;
+}
