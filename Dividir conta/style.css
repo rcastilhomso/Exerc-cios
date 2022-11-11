@@ -1,0 +1,72 @@
+body {
+  background-color: #222222;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+.container img {
+  display: flex;
+  margin: 0 auto;
+  width: 30%;
+  height: auto;
+}
+
+.container h1 {
+  font-weight: 600;
+}
+
+.container {
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  width: 30%;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  font-family: "Montserrat", sans-serif;
+}
+
+#mesas-atendidas {
+  display: flex;
+  justify-content: center;
+}
+
+#modal {
+  max-width: 50%;
+  height: 30vh;
+  background: white;
+  margin: 0 auto;
+  position: relative;
+  top: 30%;
+  padding: 20px;
+  color: #000000;
+}
+
+#overlay {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#overlay #modal h3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#fechar-modal button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

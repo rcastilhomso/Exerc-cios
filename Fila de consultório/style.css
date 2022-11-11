@@ -1,0 +1,12 @@
+.container-fluid {
+  background-color: #fff6d7;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  font-family: "Montserrat", sans-serif;
+}
+
+#pacientes-fila {
+  display: flex;
+}
