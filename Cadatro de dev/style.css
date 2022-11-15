@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-fluid {
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  background: #135;
+}
+
+.container-fluid h2 {
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container label {
+  font-weight: 700;
+}

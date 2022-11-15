@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Praticando a Manipulação do DOM</title>
+  <script src="./index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+ 
+
+<div class="container">
+        <h1 class="mt-2">Escalação do Flamengo</h1>
+    <label for="posicao-jogador">
+        Posição do jogador:
+        <select name="posicao-jogador" id="posicao-jogador">
+            <option selected disabled value="null">Selecione uma posição</option>
+            <option value="goleiro">Goleiro</option>
+            <option value="lateral-direito">Lateral Direito</option>
+            <option value="zagueiro">Zagueiro</option>
+            <option value="lateral-esquerdo">Lateral Esquerdo</option>
+            <option value="volante">Volante</option>
+            <option value="meia">Meia</option>
+            <option value="atacante">Atacante</option>
+        </select>
+    </label>
+    <label for="nome-jogador">
+        Nome do jogador:
+        <input type="text" class="mt-2"name="nome-jogador" id="nome-jogador">
+    </label>
+    <label for="numero-jogador">
+        Número do jogador:
+        <input type="number" class="mt-2" name="numero-jogador" id="numero-jogador">
+    </label>
+    <div class="buttons">
+        <button onclick="escalar()" class="btn btn-outline-primary mt-2" id="btn-adicionar-jogador">Escalar</button>
+        
+    </div>
+
+    <h3>Remover Jogador</h3>
+    <label for="numero-jogador">
+        Número do jogador:
+        <input type="number" class="mt-2" name="numero-jogador-removido" id="numero-jogador-removido">
+    </label>
+        <button onclick="removerJogador()" class="btn btn-outline-danger mt-2" id="btn-remover-jogador">Remover</button>
+    
+    
+    <ul class="escalacao">
+        <p class="mt-3">Jogadores escalados: <span id="jogadores-escalados">0</span></p>
+        <li class="goleiro mt-3">
+            <ul class="goleiro-ul">Goleiro</ul>
+        </li>
+        <li class="lateral-direito">
+            <ul class="lateral-direito-ul">Lateral Direito</ul>
+        </li>
+        <li class="zagueiro">
+            <ul class="zagueiro-ul" >Zagueiro</ul>
+        </li>
+        <li class="lateral-esquerdo">
+            <ul class="lateral-esquerdo-ul">Lateral Esquerdo</ul>
+        </li>
+        <li class="volante">
+            <ul class="volante-ul">Volante</ul>
+        </li>
+        <li class="meia">
+            <ul class="meia-ul">Meia</ul>
+        </li>
+        <li class="atacante">
+            <ul class="atacante-ul">Atacante</ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

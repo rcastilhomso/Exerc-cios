@@ -21,11 +21,12 @@ function play() {
         <h3>Seu time é:</h3>
             ${capturedPokemons
               .map(
-                (e) => `<img class="pokemon" src=${e.sprites.front_default}>`
+                (pokemon) =>
+                  `<img class="pokpokemonmon" src=${pokemon.sprites.front_default}>`
               )
               .join("")}
             <br>
-            <button onclick="reload()">Reiniciar</button>
+            <button class = "btn btn-dark" onclick="reload()">Reiniciar</button>
     `;
       } else {
         capturedPokemons.push(data);
@@ -34,8 +35,8 @@ function play() {
         <p>Ele é do tipo ${type}!</p> 
         <img class='pokemon' src="${sprites.front_default}" ><br>
         <p> HP: ${data.stats[5].base_stat}</p>
-        <button id="botao" onclick="play()">Jogue</button>
-        <button onclick="reload()">Reiniciar</button>
+        <button class = "btn btn-dark" id="botao" onclick="play()">Jogue</button>
+        <button class = "btn btn-dark" onclick="reload()">Reiniciar</button>
     `;
       }
     });
