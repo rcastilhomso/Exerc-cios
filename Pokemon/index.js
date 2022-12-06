@@ -2,6 +2,28 @@ const capturedPokemons = [];
 const pokemons = new Array(150).fill(0).map((_, i) => i + 1);
 const lvlArr = new Array(25).fill(0).map((_, i) => i + 1);
 
+const TYPES = {
+  GHOST: "Fantasma",
+  PLANT: "Planta",
+  FIRE: "Fogo",
+  WATER: "Água",
+  GRASS: "Grama",
+  STEEL: "Aço",
+  NORMAL: "Normal",
+  FAIRY: "Fada",
+  FIGHTING: "Lutador",
+  FLYING: "Voador",
+  POISON: "Venenoso",
+  GROUND: "Terra",
+  ROCK: "Pedra",
+  BUG: "Inseto",
+  DRAGON: "Dragão",
+  PSYCHIC: "Psíquico",
+  ELECTRIC: "Elétrico",
+  ICE: "Gelo",
+  DARK: "Sombrio",
+};
+
 function newPokemon() {
   return pokemons[random(pokemons)];
 }
@@ -12,8 +34,9 @@ function play() {
     .then((data) => {
       data.lvl = random(lvlArr);
       const { name, types, sprites, lvl } = data;
-      const type = traduzir(types[0].type.name);
+      const type = translate(types[0].type.name, TYPES);
       const pokemon = upperCase(name);
+      const hp = 5;
       if (capturedPokemons.length >= 6) {
         document.getElementById("activity").innerHTML = `
         <h3>Você formou um time pokémon!</h3>  
@@ -21,8 +44,8 @@ function play() {
         <h3>Seu time é:</h3>
             ${capturedPokemons
               .map(
-                (pokemon) =>
-                  `<img class="pokpokemonmon" src=${pokemon.sprites.front_default}>`
+                (e) =>
+                  `<img alt="An image of a ${e.name}" class="pokemon" src=${e.sprites.front_default}>`
               )
               .join("")}
             <br>
@@ -33,8 +56,10 @@ function play() {
         document.getElementById("activity").innerHTML = `
         <h3>Você capturou um ${pokemon} LVL ${lvl + 1}!</h3>
         <p>Ele é do tipo ${type}!</p> 
-        <img class='pokemon' src="${sprites.front_default}" ><br>
-        <p> HP: ${data.stats[5].base_stat}</p>
+        <img alt="An image of a ${data.name}" class='pokemon' src="${
+          sprites.front_default
+        }" ><br>
+        <p> HP: ${data.stats[hp].base_stat + lvl * 2}</p>
         <button class = "btn btn-dark" id="botao" onclick="play()">Jogue</button>
         <button class = "btn btn-dark" onclick="reload()">Reiniciar</button>
     `;
@@ -50,48 +75,10 @@ function upperCase(name) {
   return name[0].toUpperCase() + name.substring(1);
 }
 
-function traduzir(type) {
-  switch (type) {
-    case "normal":
-      return "Normal";
-    case "fighting":
-      return "Lutador";
-    case "flying":
-      return "Voador";
-    case "poison":
-      return "Veneno";
-    case "ground":
-      return "Terra";
-    case "rock":
-      return "Pedra";
-    case "bug":
-      return "Inseto";
-    case "ghost":
-      return "Fantasma";
-    case "steel":
-      return "Aço";
-    case "fire":
-      return "Fogo";
-    case "water":
-      return "Água";
-    case "grass":
-      return "Planta";
-    case "electric":
-      return "Elétrico";
-    case "psychic":
-      return "Psíquico";
-    case "ice":
-      return "Gelo";
-    case "dragon":
-      return "Dragão";
-    case "dark":
-      return "Sombrio";
-    case "fairy":
-      return "Fada";
-    default:
-      return type;
-  }
+function translate(word, types) {
+  return types[word.toUpperCase()] ?? word;
 }
+
 function reload() {
   window.location.reload();
 }
