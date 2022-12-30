@@ -5,16 +5,18 @@ class Order {
   #items;
   #user;
   constructor(items, user) {
-    items.array.forEach(({ product, quantity }) => {
+    items.forEach(({ product, quantity }) => {
       if (quantity > product.inStock) {
         throw new Error("Quantidade indisponível em estoque");
       }
     });
     this.#items = items;
     this.#user = user;
-    this.#total = items.reduce((acc, { product, quantity }) => {
-      return acc + product.price * quantity;
-    }, 0);
+    this.#total = items
+      .reduce((acc, { product, quantity }) => {
+        return acc + product.price * quantity;
+      }, 0)
+      .toFixed(2);
   }
   get data() {
     return {

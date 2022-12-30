@@ -32,6 +32,10 @@ class Database {
     return this.#storage.users.find((u) => u.name === name);
   }
 
+  findUserByEmail(email) {
+    return this.#storage.users.find((u) => u.email === email);
+  }
+
   saveAuthor(author) {
     if (this.findAuthorByName(author.name)) {
       throw new Error("Author already exists");
@@ -46,19 +50,26 @@ class Database {
     this.#storage.books.push(book);
   }
 
-  addBookToStock(book, quantity) {
-    if (!this.findBookByName(book.name)) {
-      throw new Error("Book not found");
-    }
+  addBookToStock(bookName, quantity) {
+    const book = this.findBookByName(bookName);
     book?.addToStock(quantity);
   }
 
-  removeBookFromStock(book, quantity) {
-    if (!this.findBookByName(book.name)) {
-      throw new Error("Book not found");
-    }
+  removeBookFromStock(bookName, quantity) {
+    const book = this.findBookByName(bookName);
     book?.removeFromStock(quantity);
   }
+
+  addPosterToStock(posterName, quantity) {
+    const poster = this.findPosterByName(posterName);
+    poster?.addToStock(quantity);
+  }
+
+  removePosterFromStock(posterName, quantity) {
+    const poster = this.findPosterByName(posterName);
+    poster?.removeFromStock(quantity);
+  }
+
   savePoster(poster) {
     if (this.findPosterByName(poster.name)) {
       throw new Error("Poster already exists");
@@ -66,13 +77,10 @@ class Database {
     this.#storage.posters.push(poster);
   }
   saveOrder(order) {
-    if (this.findOrderByName(order.name)) {
-      throw new Error("Order already exists");
-    }
     this.#storage.orders.push(order);
   }
   saveUser(user) {
-    if (this.findUserByName(user.name)) {
+    if (this.findUserByEmail(user.email)) {
       throw new Error("User already exists");
     }
     this.#storage.users.push(user);
