@@ -36,7 +36,7 @@ function play() {
       const { name, types, sprites, lvl } = data;
       const type = translate(types[0].type.name, TYPES);
       const pokemon = upperCase(name);
-      const hp = 5;
+      const hpId = 5;
       if (capturedPokemons.length >= 6) {
         document.getElementById("activity").innerHTML = `
         <h3>Você formou um time pokémon!</h3>  
@@ -59,7 +59,7 @@ function play() {
         <img alt="An image of a ${data.name}" class='pokemon' src="${
           sprites.front_default
         }" ><br>
-        <p> HP: ${data.stats[hp].base_stat + lvl * 2}</p>
+        <p> HP: ${data.stats[hpId].base_stat + lvl * 2}</p>
         <button class = "btn btn-dark" id="botao" onclick="play()">Jogue</button>
         <button class = "btn btn-dark" onclick="reload()">Reiniciar</button>
     `;
