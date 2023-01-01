@@ -14,65 +14,67 @@ let randomCard = null;
 let chancesAtuais = chances;
 let deckId = null;
 
-function newDeck() {
-  fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
-    .then((response) => response.json())
-    .then((data) => {
-      reset();
-      randomCard = traduzir(CARDS[randomNumber(0, CARDS.length - 1)]);
-      title.textContent =
-        randomCard === "Rainha"
-          ? `Tente tirar uma ${randomCard}.`
-          : `Tente tirar um ${randomCard}.`;
-      const card = document.createElement("img");
-      card.setAttribute("id", "card");
-      card.setAttribute(
-        "src",
-        "https://opengameart.org/sites/default/files/card%20back%20red.png"
-      );
-      document.querySelector(".card-position").appendChild(card);
-      deckId = data.deck_id;
-      card.src =
-        "https://opengameart.org/sites/default/files/card%20back%20red.png";
-    })
-    .catch((error) => {
-      message.textContent = error;
-    });
+async function newDeck() {
+  const response = await fetch(
+    "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
+  );
+  const data = await response.json();
+
+  try {
+    reset();
+    randomCard = traduzir(CARDS[randomNumber(0, CARDS.length - 1)]);
+    title.textContent =
+      randomCard === "Rainha"
+        ? `Tente tirar uma ${randomCard}.`
+        : `Tente tirar um ${randomCard}.`;
+    const card = document.createElement("img");
+    card.setAttribute("id", "card");
+    card.setAttribute(
+      "src",
+      "https://opengameart.org/sites/default/files/card%20back%20red.png"
+    );
+    document.querySelector(".card-position").appendChild(card);
+    deckId = data.deck_id;
+    card.src =
+      "https://opengameart.org/sites/default/files/card%20back%20red.png";
+  } catch (error) {
+    message.textContent = error;
+  }
 }
 
-function drawCard() {
+async function drawCard() {
   if (deckId === null) {
     message.textContent = "Você precisa criar um novo baralho antes.";
     return;
   }
-  fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
-    .then((response) => response.json())
-    .then((data) => {
-      drawedCards.push(data.cards[0]);
-      const card = document.querySelector("#card");
-      card.src = data.cards[0].image;
-      chancesAtuais -= 1;
-      chancesMessage.textContent =
-        chancesAtuais > 1
-          ? `Você tem mais ${numeroParaTexto(chancesAtuais)} chances.`
-          : `Você tem só mais ${numeroParaTexto(chancesAtuais)}  chance.`;
-      if (traduzir(data.cards[0].value) === randomCard) {
-        chancesMessage.textContent = "";
-        message.textContent = "Parabéns! Você conseguiu.";
-        drawBtn.style.display = "none";
-        newDeckBtn.textContent = "Reembaralhar";
-        showHand();
-        return;
-      }
-      if (drawedCards.length >= chances) {
-        chancesMessage.textContent = "";
-        message.textContent = "Que pena. Você não conseguiu.";
-        newDeckBtn.textContent = "Reembaralhar";
-        showHand();
-        drawBtn.style.display = "none";
-        return;
-      }
-    });
+  const response = await fetch(
+    `https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`
+  );
+  const data = await response.json();
+  drawedCards.push(data.cards[0]);
+  const card = document.querySelector("#card");
+  card.src = data.cards[0].image;
+  chancesAtuais -= 1;
+  chancesMessage.textContent =
+    chancesAtuais > 1
+      ? `Você tem mais ${numeroParaTexto(chancesAtuais)} chances.`
+      : `Você tem só mais ${numeroParaTexto(chancesAtuais)}  chance.`;
+  if (traduzir(data.cards[0].value) === randomCard) {
+    chancesMessage.textContent = "";
+    message.textContent = "Parabéns! Você conseguiu.";
+    drawBtn.style.display = "none";
+    newDeckBtn.textContent = "Reembaralhar";
+    showHand();
+    return;
+  }
+  if (drawedCards.length >= chances) {
+    chancesMessage.textContent = "";
+    message.textContent = "Que pena. Você não conseguiu.";
+    newDeckBtn.textContent = "Reembaralhar";
+    showHand();
+    drawBtn.style.display = "none";
+    return;
+  }
 }
 
 function showHand() {
@@ -108,3 +110,5 @@ function reset() {
 
   deckId = null;
 }
+
+newDeck();

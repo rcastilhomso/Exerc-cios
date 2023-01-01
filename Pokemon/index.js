@@ -28,17 +28,18 @@ function newPokemon() {
   return pokemons[random(pokemons)];
 }
 
-function play() {
-  fetch(`https://pokeapi.co/api/v2/pokemon/${newPokemon()}`)
-    .then((response) => response.json())
-    .then((data) => {
-      data.lvl = random(lvlArr);
-      const { name, types, sprites, lvl } = data;
-      const type = translate(types[0].type.name, TYPES);
-      const pokemon = upperCase(name);
-      const hpId = 5;
-      if (capturedPokemons.length >= 6) {
-        document.getElementById("activity").innerHTML = `
+async function play() {
+  const response = await fetch(
+    `https://pokeapi.co/api/v2/pokemon/${newPokemon()}`
+  );
+  const data = await response.json();
+  data.lvl = random(lvlArr);
+  const { name, types, sprites, lvl } = data;
+  const type = translate(types[0].type.name, TYPES);
+  const pokemon = upperCase(name);
+  const hpId = 5;
+  if (capturedPokemons.length >= 6) {
+    document.getElementById("activity").innerHTML = `
         <h3>Você formou um time pokémon!</h3>  
         <img id="ash" src="Pokemon-Ash-PNG-Free-Download.png" >
         <h3>Seu time é:</h3>
@@ -51,20 +52,19 @@ function play() {
             <br>
             <button class = "btn btn-dark" onclick="reload()">Reiniciar</button>
     `;
-      } else {
-        capturedPokemons.push(data);
-        document.getElementById("activity").innerHTML = `
+  } else {
+    capturedPokemons.push(data);
+    document.getElementById("activity").innerHTML = `
         <h3>Você capturou um ${pokemon} LVL ${lvl + 1}!</h3>
         <p>Ele é do tipo ${type}!</p> 
         <img alt="An image of a ${data.name}" class='pokemon' src="${
-          sprites.front_default
-        }" ><br>
+      sprites.front_default
+    }" ><br>
         <p> HP: ${data.stats[hpId].base_stat + lvl * 2}</p>
         <button class = "btn btn-dark" id="botao" onclick="play()">Jogue</button>
         <button class = "btn btn-dark" onclick="reload()">Reiniciar</button>
     `;
-      }
-    });
+  }
 }
 
 function random(element) {
