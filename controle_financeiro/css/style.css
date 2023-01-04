@@ -1,0 +1,30 @@
+body {
+  margin-left: 5px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.credit {
+  color: green;
+}
+
+.debit {
+  color: red;
+}
+
+.transaction,
+.balance {
+  border-bottom: 1px rgb(206, 206, 206) solid;
+  margin: 10px 0;
+}
+
+#transactions .btn {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+#transactions span {
+  font-size: large;
+}

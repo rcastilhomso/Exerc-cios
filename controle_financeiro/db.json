@@ -1,0 +1,9 @@
+{
+  "transactions": [
+    {
+      "name": "Jantar",
+      "amount": 12,
+      "id": 1
+    }
+  ]
+}
